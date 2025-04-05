@@ -1,11 +1,11 @@
-import { createBrowserRouter, RouterProvider } from 'react-router'
+import { createHashRouter, RouterProvider } from 'react-router'
 import { Login } from '@/features/auth/ui/Login'
 import { AppLayout } from '@/common/layouts/AppLayout'
 import { ProtectedRoute } from '@/common/routes/ProtectedRoute'
 import { Dashboard } from '@/features/dashboard/ui/Dashboard'
 import { ErrorPage } from '@/pages/ErrorPage/ErrorPage'
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: '/',
     element: (
