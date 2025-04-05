@@ -46,7 +46,7 @@ export const ControlledDateTimePicker = <
           fullWidth: fullWidth,
           error: !!error,
           helperText: error?.message,
-          ...rest, // передаем остальные пропсы TextField
+          ...rest,
         },
       }}
     />
