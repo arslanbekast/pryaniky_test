@@ -1,9 +1,10 @@
-import { Box, Button, CircularProgress, Container, TextField, Typography } from '@mui/material'
+import { Box, Button, CircularProgress, Container, Typography } from '@mui/material'
 import { Navigate } from 'react-router'
 import { useLogin } from '@/features/auth/hooks/useLogin'
+import { ControlledTextField } from '@/common/components/ControlledTextField'
 
 export const Login = () => {
-  const { register, handleSubmit, errors, status, isAuthenticated, onSubmit } = useLogin()
+  const { handleSubmit, control, status, isAuthenticated, onSubmit } = useLogin()
 
   if (isAuthenticated) {
     return <Navigate to={'/'} />
@@ -16,23 +17,8 @@ export const Login = () => {
           Вход в систему
         </Typography>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <TextField
-            error={!!errors.username}
-            fullWidth
-            label="Имя пользователя"
-            margin="normal"
-            helperText={errors.username?.message}
-            {...register('username')}
-          />
-          <TextField
-            error={!!errors.password}
-            fullWidth
-            label="Пароль"
-            type="password"
-            margin="normal"
-            helperText={errors.password?.message}
-            {...register('password')}
-          />
+          <ControlledTextField name="username" control={control} label="Имя пользователя" />
+          <ControlledTextField name="password" type={'password'} control={control} label="Пароль" />
           <Button
             variant="contained"
             color="primary"
