@@ -19,12 +19,11 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>
 export const useLogin = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    watch,
-  } = useForm<FormValues>({
+  const { handleSubmit, control, watch } = useForm<FormValues>({
+    defaultValues: {
+      username: '',
+      password: '',
+    },
     resolver: zodResolver(formSchema),
   })
   const status = useSelector(selectStatus)
@@ -50,10 +49,8 @@ export const useLogin = () => {
   }, [error])
 
   return {
-    register,
     handleSubmit,
-    errors,
-    error,
+    control,
     status,
     isAuthenticated,
     onSubmit,
